@@ -15,7 +15,25 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors());
+
+const cors_setup = {
+  origin: function (origin, callback){
+    if(!origin) return callback(null,true)
+
+    if(allowedOrigins.include('*')||allowedOrigins.includes(origin)){
+      return callback(null, true)
+    }
+
+    return callback(new Error(`The CORS policy forbids access from the origin: ${origin}`))
+  },
+  credentials: true,
+  methods: ['GET','POST','PUT','DELETE','PATCH','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization','From']
+
+}
+app.use(cors(cors_setup));
+
+
 
 // User Schema for MongoDB
 const UserSchema = new mongoose.Schema({
