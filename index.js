@@ -6,6 +6,8 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 const cors = require("cors");
 
+
+
 // Connection to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Successfully connected to MongoDB'))
@@ -22,7 +24,7 @@ const cors_setup = {
   origin: function (origin, callback){
     if(!origin) return callback(null,true)
 
-    if(allowedOrigins.include('*')||allowedOrigins.includes(origin)){
+    if(allowedOrigins.includes('*')||allowedOrigins.includes(origin)){
       return callback(null, true)
     }
 
