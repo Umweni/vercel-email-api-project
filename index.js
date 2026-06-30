@@ -16,6 +16,8 @@ const app = express();
 app.use(express.json());
 
 
+const allowedOrigins = process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(",").map(o => o.trim()) : ['*']
+
 const cors_setup = {
   origin: function (origin, callback){
     if(!origin) return callback(null,true)
