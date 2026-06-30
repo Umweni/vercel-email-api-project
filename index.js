@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const cors = require("cors");
 
 // Connection to MongoDB
 mongoose.connect(process.env.MONGO_URI)
