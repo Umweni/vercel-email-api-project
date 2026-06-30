@@ -14,6 +14,8 @@ const app = express();
 
 app.use(express.json());
 
+app.use(cors());
+
 // User Schema for MongoDB
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true },
